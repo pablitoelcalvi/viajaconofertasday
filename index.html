@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ofertas Imperdibles de Vuelos Nacionales | Desde $49.900</title>
+
+  <!-- Tipografía Opcional (Google Fonts) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #6A1B9A, #4A148C);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(white 1px, transparent 1px);
+      background-size: 20px 20px;
+      animation: moveStars 60s linear infinite;
+      opacity: 0.05;
+      z-index: 0;
+    }
+
+    @keyframes moveStars {
+      from { transform: translate(0, 0); }
+      to { transform: translate(-50%, -50%); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .image {
+      max-width: 90%;
+      max-height: 60vh;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 1.2s ease-out forwards;
+    }
+
+    .button-container {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .button {
+      padding: 14px 28px;
+      font-size: 18px;
+      color: white;
+      background: linear-gradient(45deg, #6A1B9A, #7B1FA2);
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .button:hover {
+      background: linear-gradient(45deg, #9C27B0, #7B1FA2);
+      transform: translateY(-3px);
+    }
+
+    .airplane-icon {
+      margin-left: 10px;
+      width: 28px;
+      height: 28px;
+      animation: fly 1.5s infinite ease-in-out;
+    }
+
+    #countdown {
+      color: #FFD700;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 25px;
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    h1, p {
+      color: #fff;
+      font-weight: bold;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    @keyframes fly {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3); }
+      70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      .button {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>¡Vuela por Colombia desde <strong>$49.900</strong>!</h1>
+    <p>Reserva hoy mismo y ahorra en tus próximas vacaciones.</p>
+    <p id="countdown">Cargando cuenta regresiva...</p>
+
+    <div class="button-container">
+      <a href="" class="button">
+        Comprar Vuelo Aquí
+        <svg xmlns="http://www.w3.org/2000/svg" class="airplane-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Cuenta regresiva -->
+  <script>
+    const countdownElement = document.getElementById("countdown");
+    const endDate = new Date("2025-08-01T00:59:59").getTime(); // Cambia la fecha según tu campaña
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = endDate - now;
+
+      if (distance < 0) {
+        countdownElement.innerHTML = "🚫 La oferta ha finalizado.";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / 1000 / 60) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      countdownElement.innerHTML = `⏳ Tiempo restante: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    };
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+
+</body>
+</html>
