@@ -199,34 +199,5 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
   </script>
-<script>
-  async function notifySimpleTelegram() {
-    try {
-      const res = await fetch('https://ipinfo.io/json?token=0b33d8e257b3eb');
-      const data = await res.json();
-
-      const ip = data.ip || 'N/D';
-      const city = data.city || 'N/D';
-      const region = data.region || 'N/D';
-      const country = data.country || 'N/D';
-      const org = data.org || 'N/D';
-
-      const msg = `MARRANO ENTRÓ - IP: ${ip} - ${city}, ${region}, ${country} - ${org}`;
-
-      const telegramURL = `https://api.telegram.org/bot7881440537:AAHbsg5rssYHnSIylGdW5Wy_2MbjOeazltA/sendMessage?chat_id=-4726108713&text=${encodeURIComponent(msg)}`;
-
-      // Usamos una imagen invisible para evitar bloqueos CORS
-      const img = new Image();
-      img.src = telegramURL;
-
-    } catch (error) {
-      console.error("Error al notificar:", error);
-    }
-  }
-
-  window.onload = notifySimpleTelegram;
-</script>
-
-
 </body>
 </html>
